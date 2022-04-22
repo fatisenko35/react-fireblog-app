@@ -8,7 +8,7 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import { createUser, getUser } from "../helpers/firebase";
+import { createUser, getUser} from "../helpers/firebase";
 
 // import { login, loginWithGoogle } from "../utils/firebaseUtil";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ const Register = () => {
   const [password, setPassword] = useState();
   
   useEffect(() => {
+    
     if (currentUser) {
       navigate("/");
     }
@@ -104,7 +105,7 @@ const Register = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={handleGoogleSingIn}
+                // onClick={handleGoogleSingIn}
                 fullWidth
               >
                 CONTINUE WITH GOOGLE

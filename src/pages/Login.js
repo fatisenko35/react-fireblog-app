@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 
-import { getUser, login, loginWithGoogle } from "../helpers/firebase";
+import { getUser, login, loginWithGoogle, setUser  } from "../helpers/firebase";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import {AuthContext} from "../contexts/AuthContext"
@@ -24,11 +24,14 @@ const Login = () => {
   // console.log(value)
   const handleGoogleSingIn = () => {
     loginWithGoogle();
+    console.log(currentUser)
   };
 
   useEffect(() => {
+    // setUser("aa", "cc", "bb", "aa")
     if (currentUser) {
       navigate("/");
+      
     }
   }, [currentUser, navigate]);
 
