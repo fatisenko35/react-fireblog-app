@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import BlogForm from '../components/BlogForm';
 import Navbar from "../components/Navbar";
 import Dashboard from '../pages/Dashboard';
 import Login from "../pages/Login";
@@ -15,10 +16,9 @@ const AppRouter = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
-        {/* <Route path="/" element={<PrivateRouter />}> */}
-          <Route path="/" element={<Dashboard />} />
-        {/* </Route> */}
+        <Route path="/blog-form" element={<BlogForm />} />
+       <Route path="/" element={<Dashboard />} />
+    
       </Routes>
     </Router>
      );

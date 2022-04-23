@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -15,10 +15,12 @@ import cw from "../assets/cw.jpeg";
 import { textAlign } from '@mui/system';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from '@firebase/auth';
+import { getUser, logout } from '../helpers/firebase';
 
 export default function Navbar() {
   const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const currentUser = getUser();
  const navigate = useNavigate();
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -32,6 +34,9 @@ export default function Navbar() {
     setAnchorEl(null);
     // navigate("/")
   };
+  // useEffect(() => {
+  //   currentUser ? navigate("/") : navigate("/login")
+  // }, [currentUser])
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -44,6 +49,7 @@ export default function Navbar() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick= {() => navigate(currentUser && "/")}
           >
             <img
               src={cw}
@@ -55,7 +61,10 @@ export default function Navbar() {
             {"<Fatihsenko /> Blog"}
           </Typography>
           
-            <div>
+            <div style={{ display: "flex"}}>
+            <Typography variant="h5" style={{ margin: "10px" }} component="div" sx={{ flexGrow: 1 }}>
+            {currentUser && currentUser.displayName}
+          </Typography>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -67,7 +76,10 @@ export default function Navbar() {
 
                 <AccountCircle />
               </IconButton>
-              <Menu
+            
+                {
+                  !currentUser ? (
+                    <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
@@ -82,9 +94,6 @@ export default function Navbar() {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                {
-                  !auth ? (
-                    <>
                       <MenuItem onClick={()=>{
                         navigate("/login")
                         handleClose();
@@ -96,26 +105,49 @@ export default function Navbar() {
                       
                       }}>Register</MenuItem>
 
-                    </>
+                      </Menu>
 
                   )
 
                     : (
-                      <>
+                      <Menu
+                      id="menu-appbar"
+                      anchorEl={anchorEl}
+                      anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      open={Boolean(anchorEl)}
+                      onClose={handleClose}
+                      style={{display: 'flex', flexDirection: 'column'}}
+                    >
+                      
                         <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>New</MenuItem>
                         <MenuItem onClick={()=>{
-                          signOut()
                           handleClose();
-                          navigate("/login")
+                          navigate("/blog-form")
+                        
+                        }}>New Blog</MenuItem>
+                        <MenuItem onClick={()=>{
+                          handleClose();
+                          logout()
+                          
+                          
+                          
                         
                         }}>Logout</MenuItem>
-                      </>
+                        </Menu>
+        
 
                     )
 
                 }
-              </Menu>
+             
             </div>
           
         </Toolbar>

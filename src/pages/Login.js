@@ -29,10 +29,13 @@ const Login = () => {
 
   useEffect(() => {
     // setUser("aa", "cc", "bb", "aa")
-    if (currentUser) {
-      navigate("/");
+    console.log(currentUser)
+    
+     if (currentUser) {
+        navigate("/")
+     }
       
-    }
+   
   }, [currentUser, navigate]);
 
   const handleLogin = () => {

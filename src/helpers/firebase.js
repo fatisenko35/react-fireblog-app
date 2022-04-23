@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import { getDatabase, ref, set, push, onValue, remove, update } from "firebase/database";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const app = initializeApp({
@@ -34,7 +35,9 @@ export const login = (email, password) => {
 };
 
 export const logout = () => {
+  
   signOut(auth);
+  
 };
 
 export const loginWithGoogle = () => {
@@ -47,30 +50,25 @@ export const loginWithGoogle = () => {
 };
 
 export const getUser = () => {
-  onAuthStateChanged(auth, (user) => {
-
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      return user
-      // ...
-    } else {
-      // User is signed out
-      // ...
-
-    }
-  });
+    const [user, setUser] = useState("")
+    onAuthStateChanged(auth, (usr) => {
+        setUser(usr)
+    
+    });
+    return user;
 }
+
 const database = getDatabase(app);
 // Bilgi Ekleme
-export const setUser = (info) => {
+export const setUser = ({title, url, content}) => {
+  console.log("setuser")
   const db = getDatabase();
   const userRef = ref(db, "baglanti");
   const newUserRef = push(userRef)
   set((newUserRef), {
-    username: info.username,
-    phoneNumber: info.phoneNumber,
-    gender: info.gender,
+    title: title,
+    url: url,
+    content: content,
   })
 }
 
@@ -78,7 +76,7 @@ export const setUser = (info) => {
 
 export const useFetch = () => {
   const [isLoading, setIsLoading] = useState();
-  const [contactList, setContactList] = useState();
+  const [blogList, setBlogList] = useState();
 
   useEffect(() => {
     setIsLoading(true)
@@ -93,11 +91,11 @@ export const useFetch = () => {
       for (let id in data) {
         baglantiArray.push({ id, ...data[id] })
       }
-      setContactList(baglantiArray);
+      setBlogList(baglantiArray);
       setIsLoading(false);
     });
   }, [])
-  return { isLoading, contactList }
+  return { isLoading, blogList }
 }
 
 // Bilgi silme
