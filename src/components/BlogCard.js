@@ -37,7 +37,7 @@ const BlogCard = ({blog}) => {
         <p>{blog.content.length < 100 ? blog.content : blog.content.slice(0,100)}</p>
       </CardContent>
       
-      <div style={{margin : "1rem"}}>
+      <div style={{marginLeft : "1rem", padding:"10px 10px 10px 5px"}}>
       <IconButton
                 size="large"
                 aria-label="account of current user"
