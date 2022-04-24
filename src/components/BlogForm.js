@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import blogPng from "../assets/blok.png";
-import { getUser, setUser } from '../helpers/firebase';
+import {  getUser, addUser } from '../helpers/firebase';
 import { useNavigate } from 'react-router-dom';
 import { style } from '@mui/system';
 const useStyles = makeStyles((theme) => ({
@@ -52,20 +52,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BlogForm = () => {
-  const [blog, setBlog] = useState({title : "", url:"", content:""})
+  const [blog, setBlog] = useState({title : "", url:"", content:"", email : "", date : "", user: ""})
   const currentUser = getUser();
   const navigate = useNavigate();
+  const currentDate = new Date().toDateString()
   useEffect(() => {
-    currentUser ? navigate("/") : console.log(currentUser)
-    
+    currentUser ? navigate("/") : console.log(currentUser)    
   }, [])
   const handleChange = (e) => {
-      setBlog({...blog, [e.target.name] : e.target.value})
+      setBlog({...blog, [e.target.name] : e.target.value, date : currentDate, user: currentUser.email})
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit =(e) => {
+    if (blog.title === "" && blog.url === "" && blog.content === "" ) {
+      alert("Please enter a value")
+      return;
+    }
     e.preventDefault();
-    setUser(blog)
+    addUser(blog)
     e.target.reset()
   }
 

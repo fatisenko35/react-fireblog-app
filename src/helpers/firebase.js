@@ -59,9 +59,10 @@ export const getUser = () => {
 }
 
 const database = getDatabase(app);
+
 // Bilgi Ekleme
-export const setUser = ({title, url, content}) => {
-  console.log("setuser")
+export const addUser = ({title, url, content, user, date}) => {
+
   const db = getDatabase();
   const userRef = ref(db, "baglanti");
   const newUserRef = push(userRef)
@@ -69,6 +70,9 @@ export const setUser = ({title, url, content}) => {
     title: title,
     url: url,
     content: content,
+    date: date,
+    user: user
+
   })
 }
 
