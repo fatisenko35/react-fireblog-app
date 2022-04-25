@@ -80,6 +80,7 @@ export default function Navbar() {
                 {
                   !currentUser ? (
                     <Menu
+                    sx={{zIndex:2}}
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{

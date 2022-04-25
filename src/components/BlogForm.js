@@ -68,6 +68,7 @@ const BlogForm = () => {
       return;
     }
     e.preventDefault();
+    navigate("/")
     addUser(blog)
     e.target.reset()
   }

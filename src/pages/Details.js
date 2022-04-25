@@ -37,27 +37,26 @@ function Detail() {
   }
 
   return (
-    <div style={{ marginTop: "2rem" }}>
+    <div style={{ marginTop: "2rem" , minHeight: "100vh", paddingBottom: "2rem"}}>
       {currentUser ? (
         <Card sx={{ maxWidth: "80vw", margin: "auto" }}>
           <CardActionArea>
             <CardMedia
               component="img"
-              height="200"
               image={detail.url}
               alt={detail.item}
-              sx={{ width: 200, margin: "auto" }}
+              sx={{ height:"70vh",width:"60vh",margin: "auto" }}
             />
             <CardContent sx={{ backgroundColor: "#FFF6EA" }}>
               <Typography
                 gutterBottom
                 variant="h5"
                 component="div"
-                sx={{ fontFamily: "'Girassol', cursive", color: "#046482" }}
+                sx={{ fontFamily: "'Girassol', cursive", color: "#046482", textAlign: "center" }}
               >
                 {detail.title}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" sx={{ textAlign: "center"}}>
                 {detail.date}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -71,18 +70,16 @@ function Detail() {
               justifyContent: "flex-start",
               alignItems: "center",
               gap: "10px",
-              marginBottom: "2rem",
+              marginBottom: "1.5rem",
+              marginLeft:"1rem"
             }}
           >
             <AccountCircleIcon />
-            {detail.user}:{currentUser.user}
+            {detail.user}
           </Typography>
           <Typography
             sx={{
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              gap: "10px",
+              margin:"-1rem 0 0 9px",
             }}
           >
             <IconButton>
@@ -92,16 +89,13 @@ function Detail() {
               <ChatBubbleOutlineIcon />
             </IconButton>
           </Typography>
-        </Card>
-      ) : (
-        "Not Found"
-      )}
-      {currentUser.email === detail.user && (
+          {currentUser.email === detail.user && (
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            marginTop: "1rem",
+            display: 'flex',
+            justifyContent:"center",
+            gap: "100px",
+            marginBottom: "1rem"
           }}
         >
             
@@ -113,6 +107,11 @@ function Detail() {
           </Button>
         </div>
       )}
+        </Card>
+      ) : (
+        "Not Found"
+      )}
+     
     </div>
   );
 }
