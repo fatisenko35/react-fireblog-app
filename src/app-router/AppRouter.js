@@ -5,10 +5,11 @@ import Navbar from "../components/Navbar";
 import Dashboard from '../pages/Dashboard';
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Details from "../pages/Details";
 // import News from "../pages/News";
 
 import PrivateRouter from "./PrivateRouter";
-
+import UpdateBlog from "../pages/UpdateBlog";
 const AppRouter = () => {
   return (
     <Router>
@@ -18,7 +19,8 @@ const AppRouter = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/blog-form" element={<BlogForm />} />
        <Route path="/" element={<Dashboard />} />
-    
+        <Route path="/detail" element={<Details />} />
+        <Route path="/update" element={<UpdateBlog />} />
       </Routes>
     </Router>
      );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Provider, useContext } from 'react';
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,6 +11,7 @@ import blogPng from "../assets/blok.png";
 import {  getUser, addUser } from '../helpers/firebase';
 import { useNavigate } from 'react-router-dom';
 import { style } from '@mui/system';
+import BlogContext from '../contexts/BlogContext';
 const useStyles = makeStyles((theme) => ({
 
   paper: {
@@ -52,14 +53,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BlogForm = () => {
-  const [blog, setBlog] = useState({title : "", url:"", content:"", email : "", date : "", user: ""})
-  const currentUser = getUser();
+  const {blog, setBlog, user:currentUser, setUser, currentDate} = useContext(BlogContext) 
+  console.log(blog, currentUser)
+  
   const navigate = useNavigate();
-  const currentDate = new Date().toDateString()
-  useEffect(() => {
-    currentUser ? navigate("/") : console.log(currentUser)    
-  }, [])
-  const handleChange = (e) => {
+  
+   const handleChange = (e) => {
       setBlog({...blog, [e.target.name] : e.target.value, date : currentDate, user: currentUser.email})
   }
 

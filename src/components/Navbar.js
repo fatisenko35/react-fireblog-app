@@ -124,7 +124,7 @@ export default function Navbar() {
                       }}
                       open={Boolean(anchorEl)}
                       onClose={handleClose}
-                      style={{display: 'flex', flexDirection: 'column'}}
+                      // sx={{display: 'flex', flexDirection: 'column',alignItems: 'center',justifyContent: 'center',zIndex:"5"}}
                     >
                       
                         <MenuItem onClick={handleClose}>Profile</MenuItem>

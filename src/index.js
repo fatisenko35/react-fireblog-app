@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./contexts/AuthContext";
+import { BlogProvider } from "./contexts/BlogContext";
 
 
 
@@ -12,9 +13,9 @@ ReactDOM.render(
   
   <React.StrictMode>
     
-      
+  <BlogProvider>
         <App />
-
+  </BlogProvider>  
     
     
   </React.StrictMode>,
