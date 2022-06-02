@@ -11,7 +11,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import { getUser } from '../helpers/firebase';
-import { Grid } from '@material-ui/core';
+
 
 
 const BlogCard = ({ blog }) => {

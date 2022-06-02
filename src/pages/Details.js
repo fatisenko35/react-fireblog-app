@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +9,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { IconButton } from "@mui/material";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// import AppContext from "../contexts/AppContext";
 import Button from "@mui/material/Button";
 import { DeleteUser, getUser } from "../helpers/firebase";
 
@@ -23,7 +22,6 @@ function Detail() {
   
   useEffect(() => {
     setDetail(location.state.blog);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(detail.user);
 

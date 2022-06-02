@@ -10,11 +10,14 @@ import {
 } from "@mui/material";
 import { createUser, getUser} from "../helpers/firebase";
 
-// import { login, loginWithGoogle } from "../utils/firebaseUtil";
+import { login, loginWithGoogle }from "../helpers/firebase";
 import { useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
+const handleGoogleSingIn = () => {
+  loginWithGoogle();
 
+};
 const Register = () => {
   const navigate = useNavigate();
   const currentUser  = getUser();
@@ -105,7 +108,7 @@ const Register = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                // onClick={handleGoogleSingIn}
+                onClick={handleGoogleSingIn}
                 fullWidth
               >
                 CONTINUE WITH GOOGLE
