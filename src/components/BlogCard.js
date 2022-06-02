@@ -17,7 +17,6 @@ import { Grid } from '@material-ui/core';
 const BlogCard = ({ blog }) => {
   const currentUser = getUser();
   const navigate = useNavigate()
-  console.log(currentUser.email);
   const handleClick = () => {
     currentUser ? navigate(`/detail`, { state: { blog } }) : navigate("/login")
 
