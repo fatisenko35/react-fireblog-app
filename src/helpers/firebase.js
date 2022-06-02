@@ -14,13 +14,16 @@ import { useNavigate } from "react-router-dom";
 
 
 const app = initializeApp({
-  apiKey: "AIzaSyBPIOVTS9bpzBMe7Tb8-Jrk0Fd-TsXe9ro",
-  authDomain: "fireblog-app-6de0d.firebaseapp.com",
-  databaseURL: "https://fireblog-app-6de0d-default-rtdb.firebaseio.com",
-  projectId: "fireblog-app-6de0d",
-  storageBucket: "fireblog-app-6de0d.appspot.com",
-  messagingSenderId: "513818768410",
-  appId: "1:513818768410:web:cc8ed1922203ac5111cda3"
+
+  databaseURL: "https://blog-f2c3a-default-rtdb.firebaseio.com/",
+
+
+  apiKey: "AIzaSyBQWB5u5M7AUdQIQtZM_zGpMZs7gBRe-BE",
+  authDomain: "blog-f2c3a.firebaseapp.com",
+  projectId: "blog-f2c3a",
+  storageBucket: "blog-f2c3a.appspot.com",
+  messagingSenderId: "514836545338",
+  appId: "1:514836545338:web:ca226909aca2e335c2da03"
 });
 
 export const auth = getAuth(app);
